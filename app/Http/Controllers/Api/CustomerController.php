@@ -20,7 +20,7 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function save(Request $request)
     {
         //
     }
@@ -44,8 +44,15 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+    public function delete(Request $request)
+{
+    $id = $request->id; // get ID from request body
+    $customer = Customer::findOrFail($id);
+    $customer->delete();
+
+    return response()->json([
+        'message' => 'Deleted successfully'
+    ]);
+}
+
 }

@@ -15,13 +15,12 @@ class OrderController extends Controller
      */
 public function index()
 {
-    $orders = Order::with('customer')->get();
-    $status = Order::with('status')->get();
+    $orders = Order::with('customer','status')->get();
+
 
 
     return response()->json([
-        'orders' => $orders,
-        'status' => $status
+        'orders' => $orders
     ]);
 }
 
