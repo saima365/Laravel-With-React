@@ -21,6 +21,10 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 Route::get("/customer",[CustomerController::class,"index"]);
 Route::delete('/customer/delete', [CustomerController::class, 'delete']);
+Route::post('/customer/save', [CustomerController::class, 'save']);
 Route::get("/order",[OrderController::class,"index"]);
+Route::delete('/order/delete', [OrderController::class, 'delete']);
+Route::post('/order/react_order_save', [OrderController::class, 'react_order_save']);
 Route::get("/purchase",[PurchaseController::class,"index"]);
+Route::delete('/purchase/delete', [PurchaseController::class, 'delete']);
 Route::get("/stock",[StockController::class,"index"]);

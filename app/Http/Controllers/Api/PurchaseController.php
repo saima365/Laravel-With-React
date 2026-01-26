@@ -49,8 +49,14 @@ class PurchaseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+   public function delete(Request $request)
+{
+    $id = $request->id;
+    $purchase = Purchase::findOrFail($id);
+    $purchase->delete();
+
+    return response()->json([
+        'message' => 'Deleted successfully'
+    ]);
+}
 }

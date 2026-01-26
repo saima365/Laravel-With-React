@@ -12,4 +12,5 @@ class Order extends Model
         public function status(){
        return  $this->belongsTo(Statuse::class, "status_id");
     }
+     
 }
