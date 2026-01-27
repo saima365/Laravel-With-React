@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Customer;
+
 use App\Models\Order;
 use App\Models\OrderDetail;
-use App\Models\Statuse;
+
 use App\Models\Stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -38,7 +38,7 @@ class OrderController extends Controller
     DB::beginTransaction();
 
     try {
-
+       
         $order = new Order();
         $order->customer_id = $request->customer['id'];
         $order->order_total = $request->summary['total'];
@@ -63,7 +63,7 @@ class OrderController extends Controller
 
             $stock = new Stock();
             $stock->product_id = $item['id'];
-            $stock->quantity = -$item['quantity']; 
+            $stock->quantity = -$item['quantity'];
             $stock->transaction_id = 1;
             $stock->warehouse_id = 1;
             $stock->date = now();
