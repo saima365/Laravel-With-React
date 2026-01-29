@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-
+use App\Models\Customer;
 use App\Models\Order;
 use App\Models\OrderDetail;
 
@@ -38,7 +38,7 @@ class OrderController extends Controller
     DB::beginTransaction();
 
     try {
-       
+
         $order = new Order();
         $order->customer_id = $request->customer['id'];
         $order->order_total = $request->summary['total'];
@@ -91,9 +91,12 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function orderInvoice($id)
     {
-        //
+        $order = Order::find($id);
+        $order_details = OrderDetail::with('product')->where("order_id", "=", $id)->get();
+        $customer = Customer::find($order->customer_id);
+        return response()->json(compact("order", "order_details", "customer"));
     }
 
     /**

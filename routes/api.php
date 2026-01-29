@@ -26,6 +26,7 @@ Route::delete('/customer/delete', [CustomerController::class, 'delete']);
 Route::post('/customer/save', [CustomerController::class, 'save']);
 Route::get("/order",[OrderController::class,"index"]);
 Route::delete('/order/delete', [OrderController::class, 'delete']);
+Route::get('/order/orderInvoice/{id}', [OrderController::class, 'orderInvoice']);
 Route::post('/order/react_order_save', [OrderController::class, 'react_order_save']);
 Route::get("/purchase",[PurchaseController::class,"index"]);
 Route::post('/purchase/react_purchase_save', [PurchaseController::class, 'react_purchase_save']);
