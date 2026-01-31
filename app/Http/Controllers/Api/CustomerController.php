@@ -57,15 +57,38 @@ class CustomerController extends Controller
      */
     public function show(string $id)
     {
-        //
+
     }
+   public function edit($id)
+{
+    $customer = Customer::find($id);
+
+    if (!$customer) {
+        return response()->json(['message' => 'Customer not found'], 404);
+    }
+
+    return response()->json($customer, 200);
+}
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        // return response()->json($request->all());
+         try {
+            $customer =  Customer::find($request->id);
+            $customer->name = $request->name;
+            $customer->email = $request->email;
+            $customer->phone = $request->phone;
+            $customer->address = $request->address;
+            $customer->save();
+            return response()->json(["success" => "customer has been updated successfully"], 200);
+
+        } catch (\Throwable $th) {
+            return response()->json(["error" => $th->getMessage()], 200);
+        }
     }
 
     /**

@@ -23,6 +23,9 @@ Route::get('/user', function (Request $request) {
 Route::get("/supplier",[SupplierController::class,"index"]);
 Route::get("/customer",[CustomerController::class,"index"]);
 Route::delete('/customer/delete', [CustomerController::class, 'delete']);
+Route::put('/customer/update/{id}', [CustomerController::class, 'update']);
+Route::get('/customer/edit/{id}', [CustomerController::class, 'edit']);
+
 Route::post('/customer/save', [CustomerController::class, 'save']);
 Route::get("/order",[OrderController::class,"index"]);
 Route::delete('/order/delete', [OrderController::class, 'delete']);
